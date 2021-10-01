@@ -15,3 +15,13 @@ CREATE TABLE something
 );
 
 -- create a trigger/function which will calculate the age on insert or modify given the birthday
+CREATE or replace FUNCTION getAge() RETURNS trigger AS $get_age_trg$
+BEGIN
+perform 'id', 'birthday', EXTRACT( YEAR FROM age(CAST(birthday as DATE))) AS "age" from something;
+return 'age';
+
+END;
+$get_age_trg$ LANGUAGE plpgsql;
+
+CREATE TRIGGER get_age_trg AFTER INSERT ON something
+FOR EACH ROW EXECUTE PROCEDURE getAge();
