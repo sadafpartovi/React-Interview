@@ -1,8 +1,19 @@
-import { Container, Grid, ListItemButton, ListItemText, Typography } from '@material-ui/core';
+import { Container, Grid, ListItemButton, ListItemText, Typography, Button } from '@material-ui/core';
 import React from 'react';
 import Link from 'next/link';
+import axios from 'axios';
 
 export default function Question2() {
+	const handleClick = async () => {
+		try {
+			const {data} = await axios.post('/api/question2',{
+				name: 'Sophie', id: '1'
+			});
+		console.log(data)
+		} catch(error) {
+			console.log(error)
+		}
+	}
 	return <Container sx={ { pt: 2 } }>
 		<Grid>
 			<Link href='/question1' passHref>
@@ -30,5 +41,6 @@ export default function Question2() {
 		<Typography>
 			You can use any library for this
 		</Typography>
+		<Button onClick={handleClick}>Click</Button>
 	</Container>;
 }
