@@ -1,16 +1,5 @@
-import {
-  Container,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  Grid,
-} from "@material-ui/core";
-
 import React from "react";
-import { Formik, Field, Form, useFormik } from "formik";
+import { useFormik } from "formik";
 import {
   Switch,
   Button,
@@ -19,8 +8,8 @@ import {
   MenuItem,
   Box,
   FormControlLabel,
-	InputLabel,
-	FormControl
+  InputLabel,
+  FormControl,
 } from "@material-ui/core";
 import * as yup from "yup";
 
@@ -51,31 +40,35 @@ export default function Question1() {
     <Box sx={{ maxWidth: "sm", margin: "auto" }} pt={10}>
       <form onSubmit={formik.handleSubmit}>
         <Box>
-        <TextField
-          fullWidth
-          id="name"
-          name="name"
-          label="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-        />
+          <TextField
+            fullWidth
+            id="name"
+            name="name"
+            label="name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
+          />
         </Box>
-        <Box  marginTop={1}>
-        <TextField
-          fullWidth
-          id="date"
-          name="date"
-          label=""
-          type="date"
-          value={formik.values.date}
-          onChange={formik.handleChange}
-          error={formik.touched.date && Boolean(formik.errors.date)}
-          helperText={formik.touched.date && formik.errors.date}
-        />
+        <Box marginTop={1}>
+          <TextField
+            fullWidth
+            id="date"
+            name="date"
+            label=""
+            type="date"
+            value={formik.values.date}
+            onChange={formik.handleChange}
+            error={formik.touched.date && Boolean(formik.errors.date)}
+            helperText={formik.touched.date && formik.errors.date}
+          />
         </Box>
-        <Box padding={1} sx={{border: 1, borderRadius: 1, color: 'gray'}} marginTop={1}>
+        <Box
+          padding={1}
+          sx={{ border: 1, borderRadius: 1, color: "gray" }}
+          marginTop={1}
+        >
           <FormControlLabel
             label="Active Switch"
             labelPlacement="start"
@@ -91,26 +84,29 @@ export default function Question1() {
           />
         </Box>
 
-						<Box marginTop={1} sx={{ minWidth: 120 }}>
-        <FormControl  >
-				<InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            style={{ minWidth: 120 }}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Age"
-          >
+        <Box marginTop={1} sx={{ minWidth: 120 }}>
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <Select
+              style={{ minWidth: 120 }}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Age"
+            >
+              {arr.map((age) => (
+                <MenuItem key={age} value={age + 1}>
+                  {age + 1}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
 
-            {arr.map((age) => (
-              <MenuItem key={age} value={age + 1}>{age + 1}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-				</Box>
-
-				<Box marginTop={3}>
-        <Button fullWidth variant="outlined" type="submit">Submit</Button>
-				</Box>
+        <Box marginTop={3}>
+          <Button fullWidth variant="outlined" type="submit">
+            Submit
+          </Button>
+        </Box>
       </form>
     </Box>
   );
